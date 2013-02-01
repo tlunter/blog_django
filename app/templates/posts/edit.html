@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+                    <h1>{% block title %}Edit Post{% endblock %}</h1>
+                    <form action="{% url posts.views.edit form.instance.pk%}" method="post" class="form-horizontal">
+                    {% include 'posts/form.html' %}
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="submit" value="Update Post"></p>
+                            </div>
+                        </div>
+                    </form>
+{% endblock %}

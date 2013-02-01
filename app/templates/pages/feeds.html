@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% load feedparsed %}
+{% block content %}
+                <h1>{% block title %}Feed Stream{% endblock %}</h1>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <h2>GitHub</h2>
+                        {% for entry in gh_entries %}
+                        <div class="row-fluid">
+                            <div class="span8">
+                                <a href="{{ entry.link }}">{{ entry.title }}</a>
+                            </div>
+                            <div class="span4">
+                                <small class="pull-right">on {{ entry.published_parsed|feedparsed|date:"j M y, g:i A" }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="span6">
+                        <h2>Stack Overflow</h2>
+                        {% for entry in so_entries %}
+                        <div class="row-fluid">
+                            <div class="span8">
+                                <a href="{{ entry.link }}">{{ entry.title }}</a>
+                            </div>
+                            <div class="span4">
+                                <small class="pull-right">on {{ entry.published_parsed|feedparsed|date:"j M y, g:i A" }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+{% endblock %}

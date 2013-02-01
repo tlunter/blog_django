@@ -1,0 +1,6 @@
+{% extends 'layout.html' %}
+{% block content %}
+                <h1>{% block title %}Comment on {{ comment.post.subject }}{% endblock %}</h1>
+                {{ comment.body }}
+                <br>
+{% endblock %}

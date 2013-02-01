@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+                <h1>{% block title %}{{ post.subject }}{% endblock %}</h1>
+                {{ post.body }}<br><br>
+                {% if user.is_staff or user == post.created_by %}
+                <a href="{% url posts.views.edit post_id=post.pk %}">Edit Post</a><br><br>
+                {% endif %}
+                {% if post.comments.count > 0%}
+                Comments:<br>
+                {% for comment in post.comments.all %}
+                    {{ comment.body }}<br>
+                {% endfor %}
+                <br>
+                {% endif %}
+                Add Comment<br><br>
+{% endblock %}
+

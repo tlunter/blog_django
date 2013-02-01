@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load label_class %}
+{% block content %}
+                    <h1>{% block title %}Login{% endblock %}</h1>
+                    {% include 'forms/errors.html' %}
+                    <form action="{% url django.contrib.auth.views.login %}" method="post" class="form-horizontal">
+                        {% csrf_token %}
+                        <div style="display:none"><input type="hidden" name="next" value="{{ next }}" /></div>
+                        {% for field in form.hidden_fields %}
+                            {% include 'forms/hidden_field.html' %}
+                        {% endfor %}
+                        {% for field in form.visible_fields %}
+                            {% include 'forms/visible_field.html' %}
+                        {% endfor %}
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="submit" value="Login" />
+                            </div>
+                        </div>
+                    </form>
+{% endblock %}

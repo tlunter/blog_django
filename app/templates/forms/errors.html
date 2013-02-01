@@ -1,0 +1,10 @@
+                    {% if form.errors %}
+                    <div class="control-group error">
+                        <div class="controls">
+                            <span class="help-inline"><strong>Errors</strong></span>
+                            {% for error in form.non_field_errors %}
+                            <span class="help-inline">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}

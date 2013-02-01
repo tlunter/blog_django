@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog - {% spaceless %}{% block title %}{% endblock %}{% endspaceless %}</title>
+        <link rel="stylesheet" href="{{ STATIC_URL }}/css/bootstrap.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}/css/bootstrap-responsive.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}/css/main.css">
+        {% block stylesheet %}
+        {% endblock %}
+        {% block meta %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="nav-collapse collapse">
+                        <ul class="nav" id="navigation">
+                            <li><a href="{% url posts.views.index %}"><i class="icon-home"></i> Home</a></li>
+                            <li><a href="{% url pages.views.about %}"><i class="icon-folder-close"></i> About</a></li>
+                            <li><a href="{% url pages.views.feeds %}"><i class="icon-bookmark"></i> Feed Stream</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url auth.views.profile %}"><i class="icon-user"></i> {{ user }}</a></li>
+                            <li><a href="{% url django.contrib.auth.views.logout %}"><i class="icon-off"></i> Logout</a></li>
+                            {% else %}
+                            <li><a href="{% url django.contrib.auth.views.login %}"><i class="icon-user"></i> Login</a></li>
+                            {% endif %}
+                        </ul>
+                        <a class="brand">Todd Lunter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span12">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <ul class="inline">
+                    <li><a href="{% url posts.views.index %}"><i class="icon-home"></i> Home</a></li>
+                    <li><a href="{% url pages.views.about %}"><i class="icon-user"></i> About</a></li>
+                    <li><a href="{% url pages.views.feeds %}"><i class="icon-bookmark"></i> Feed Stream</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url auth.views.profile %}"><i class="icon-user"></i> {{ user }}</a></li>
+                    <li><a href="{% url django.contrib.auth.views.logout %}"><i class="icon-off"></i> Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url django.contrib.auth.views.login %}"><i class="icon-user"></i> Login</a></li>
+                    {% endif %}
+                </ul>
+                Copyright &copy; Todd Lunter.
+            </div>
+        </footer>
+    </body>
+</html>

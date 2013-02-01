@@ -1,0 +1,18 @@
+{% load label_class field_type %}
+                    <div class="control-group{% if field.errors %} error{% endif %}">
+                        {% if not field|field_type:"checkboxinput" %}
+                        {{ field|label_class:"control-label" }}
+                        {% endif %}
+                        <div class="controls">
+                            {% if not field|field_type:"checkboxinput" %}
+                                {{ field }}
+                            {% else %}
+                                <label class="checkbox">
+                                    {{ field }} {{ field.label }}
+                                </label>
+                            {% endif %}
+                            {% for error in field.errors %}
+                            <span class="help-inline">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>

@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+                    <h1>{% block title %}New Post{% endblock %}</h1>
+                    <form action="{% url posts.views.new %}" method="post" class="form-horizontal">
+                    {% include 'posts/form.html' %}
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="submit" value="Submit Post"></p>
+                            </div>
+                        </div>
+                    </form>
+{% endblock %}

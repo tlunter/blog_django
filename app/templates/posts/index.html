@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+                    <h1>{% block title %}All Posts{% endblock %}</h1>
+                    {% for post in posts %}
+                    <div class="row-fluid">
+                        <div class="span12">
+                            {{ post.subject }} {% if not post.visible %}(Hidden){% endif %}<br>
+                            {{ post.body }}<br>
+                            <a href="{% url posts.views.show post.id %}">Comments</a>
+                            {% if user.is_staff or user == post.created_by %}
+                            | <a href="{% url posts.views.edit post_id=post.pk %}">Edit Post</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                <a href="{% url posts.views.new %}">New Post</a>
+{% endblock %}

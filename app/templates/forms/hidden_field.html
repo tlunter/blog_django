@@ -1,0 +1,8 @@
+                    {{ field }}
+                    {% for error in field.errors %}
+                    <div class="control-group error">
+                        <div class="controls">
+                            <span class="help-inline">{{ error }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
