@@ -16,14 +16,14 @@
                 <div class="container">
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navigation">
-                            <li><a href="{% url posts.views.index %}"><i class="icon-home"></i> Home</a></li>
-                            <li><a href="{% url pages.views.about %}"><i class="icon-folder-close"></i> About</a></li>
-                            <li><a href="{% url pages.views.feeds %}"><i class="icon-bookmark"></i> Feed Stream</a></li>
+                            <li{% if request.path == "/blog/" %} class="active"{% endif %}><a href="{% url posts.views.index %}"><i class="icon-home"></i> Home</a></li>
+                            <li{% if request.path == "/blog/pages/about/" %} class="active"{% endif %}><a href="{% url pages.views.about %}"><i class="icon-folder-close"></i> About</a></li>
+                            <li{% if request.path == "/blog/pages/feeds/" %} class="active"{% endif %}><a href="{% url pages.views.feeds %}"><i class="icon-bookmark"></i> Feed Stream</a></li>
                             {% if user.is_authenticated %}
-                            <li><a href="{% url auth.views.profile %}"><i class="icon-user"></i> {{ user }}</a></li>
-                            <li><a href="{% url django.contrib.auth.views.logout %}"><i class="icon-off"></i> Logout</a></li>
+                            <li{% if request.path == "/blog/accounts/profile/" %} class="active"{% endif %}><a href="{% url auth.views.profile %}"><i class="icon-user"></i> {{ user }}</a></li>
+                            <li{% if request.path == "/blog/accounts/logout/" %} class="active"{% endif %}><a href="{% url django.contrib.auth.views.logout %}"><i class="icon-off"></i> Logout</a></li>
                             {% else %}
-                            <li><a href="{% url django.contrib.auth.views.login %}"><i class="icon-user"></i> Login</a></li>
+                            <li{% if request.path == "/blog/accounts/login/" %} class="active"{% endif %}><a href="{% url django.contrib.auth.views.login %}"><i class="icon-user"></i> Login</a></li>
                             {% endif %}
                         </ul>
                         <a class="brand">Todd Lunter</a>

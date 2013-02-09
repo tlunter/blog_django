@@ -24,7 +24,7 @@ def show(request, post_id):
 
     return render(request, 'posts/show.html', { 'post': post })
 
-@is_staff
+@is_staff(permission='posts.add_post')
 def new(request):
     if request.method == "POST":
         form = PostCreationForm(request.POST)
