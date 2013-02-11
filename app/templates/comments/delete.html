@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+                    <h1>{% block title %}Delete Comment{% endblock %}</h1>
+                    {% include 'forms/errors.html' %}
+                    <form action="{{ form_url }}" method="post">
+                    {% csrf_token %}
+                    Are you sure you want to delete this comment?
+                    {% for field in form.hidden_fields %}
+                            {% include 'forms/hidden_field.html' %}
+                    {% endfor %}
+                    {% for field in form.visible_fields %}
+                        {% include 'forms/visible_field.html' %}
+                    {% endfor %}
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="submit" value="Delete">
+                        </div>
+                    </div>
+                    </form>
+{% endblock %}

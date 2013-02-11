@@ -1,9 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-                <h1>{% block title %}{{ post.subject }}{% endblock %}</h1>
-                {{ post.body }}<br><br>
+                <ul class="inline">
+                    <li><h1>{% block title %}{{ post.subject }}{% endblock %}</h1></li>
+                    {% if not post.visible %}<li><h4>(Hidden)</h4></li>{% endif %}
+                </ul>
+                {{ post.body }}
                 {% if user.is_staff or user == post.created_by %}
-                <a href="{% url posts.views.edit post_id=post.pk %}">Edit Post</a><br><br>
+                <a href="{% url posts.views.edit post_id=post.pk %}">Edit</a> |
+                <a href="{% url posts.views.delete post_id=post.pk %}">Delete</a><br><br>
                 {% endif %}
                 {% if post.comments.count > 0%}
                 Comments:<br>
@@ -12,6 +16,6 @@
                 {% endfor %}
                 <br>
                 {% endif %}
-                Add Comment<br><br>
+                <a href="{% url comments.views.new post.pk %}">Add Comment</a><br><br>
 {% endblock %}
 

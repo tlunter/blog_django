@@ -1,9 +1,9 @@
 from django import forms
 from posts.models import Post
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 class PostCreationForm(forms.ModelForm):
-
     subject = forms.CharField(label=_("Subject"),
                               help_text=_("The subject of the new post"))
     body = forms.CharField(label=_("Body"),
@@ -15,8 +15,12 @@ class PostCreationForm(forms.ModelForm):
 
     def save(self, user, commit=True):
         post = super(PostCreationForm, self).save(commit=False) 
-        if not post.created_by:
+
+        try:
+            post.created_by
+        except User.DoesNotExist:
             post.created_by = user
+
         post.updated_by = user
 
         if commit:

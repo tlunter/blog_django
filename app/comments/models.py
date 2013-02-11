@@ -9,3 +9,6 @@ class Comment(models.Model):
     created_by = models.ForeignKey(User, related_name='created comments')
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.ForeignKey(User, related_name='updated comments')
+
+    def __unicode__(self):
+        return "{0} {1} {2} {3}".format(self.post.subject, self.body, self.created_on, self.updated_on)
