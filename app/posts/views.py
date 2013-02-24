@@ -1,10 +1,12 @@
-from django.http import Http404, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from app.decorators import is_staff
 from posts.models import Post
 from posts.forms import PostCreationForm, PostDeletionForm
 from comments.models import Comment
+from comments.forms import CommentCreationForm
 
 def index(request):
     posts = Post.objects.all()
@@ -22,7 +24,9 @@ def show(request, post_id):
     except Post.DoesNotExist:
         raise Http404
 
-    return render(request, 'posts/show.html', { 'post': post })
+    form = CommentCreationForm(initial={'post': post})
+
+    return render(request, 'posts/show.html', { 'post': post, 'form': form })
 
 @is_staff(permission='posts.add_post')
 def new(request):
@@ -37,6 +41,7 @@ def new(request):
 
     return render(request, 'posts/new.html', { 'form': form })
 
+@login_required
 def edit(request, post_id):
     try:
         post = Post.objects.select_related().get(pk=post_id)
@@ -58,6 +63,7 @@ def edit(request, post_id):
 
     return render(request, 'posts/edit.html', { 'form': form })
 
+@login_required
 def delete(request, post_id):
     try:
         post = Post.objects.select_related().get(pk=post_id)

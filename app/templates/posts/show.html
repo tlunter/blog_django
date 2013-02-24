@@ -16,6 +16,14 @@
                 {% endfor %}
                 <br>
                 {% endif %}
-                <a href="{% url comments.views.new post.pk %}">Add Comment</a><br><br>
+                <div class="clear-fix">
+                    <b>Add Comment</b>
+                    <form action="{% url comments.views.new post_id=post.pk %}" method="post" class="form-horizontal">
+                    {% include 'comments/form_inline.html' %}
+                        <div class="control-group">
+                            <input type="submit" value="Submit Comment"></p>
+                        </div>
+                    </form>
+                </div>
 {% endblock %}
 

@@ -7,7 +7,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 class CommentCreationForm(forms.ModelForm):
     body = forms.CharField(label=_("Body"),
                            help_text=_("The body of the comment"),
-                           widget=forms.Textarea)
+                           widget=forms.Textarea(attrs={'style': 'width: 800px; height: 100px;'}))
 
     post = forms.ModelChoiceField(queryset=Post.objects.all(),
                                   empty_label=None,

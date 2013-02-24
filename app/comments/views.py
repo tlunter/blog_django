@@ -1,5 +1,6 @@
-from django.http import Http404, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from app.decorators import is_staff
 from posts.models import Post
@@ -18,6 +19,7 @@ def show(request, comment_id):
 
     return render(request, 'comments/show.html', { 'comment': comment })
 
+@login_required
 def new(request, post_id):
     try:
         post = Post.objects.get(pk=post_id)
@@ -35,6 +37,7 @@ def new(request, post_id):
 
     return render(request, 'comments/new.html', { 'form': form, 'post': post })
 
+@login_required
 def edit(request, comment_id):
     try:
         comment = Comment.objects.get(pk=comment_id)
@@ -56,6 +59,7 @@ def edit(request, comment_id):
 
     return render(request, 'comments/edit.html', { 'form': form })
 
+@login_required
 def delete(request, comment_id):
     try:
         comment = Comment.objects.select_related().get(pk=comment_id)
