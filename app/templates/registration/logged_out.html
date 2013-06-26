@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block meta %}
-            <meta http-equiv="refresh" content="1;url={% url posts.views.index %}" /> 
+            <meta http-equiv="refresh" content="1;url={% url "posts.views.index" %}" /> 
 {% endblock %}
 {% block content %}
                     <h1>{% block title %}Logged Out{% endblock %}</h1>

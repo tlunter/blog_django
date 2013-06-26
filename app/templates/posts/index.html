@@ -9,15 +9,15 @@
                                 {% if not post.visible %}<li><h4>(Hidden)</h4></li>{% endif %}
                             </ul>
                             {{ post.body }}
-                            <a href="{% url posts.views.show post_id=post.pk %}">Comments</a>
+                            <a href="{% url "posts.views.show" post_id=post.pk %}">Comments</a>
                             {% if user.is_staff or user == post.created_by %}
-                            | <a href="{% url posts.views.edit post_id=post.pk %}">Edit</a>
-                            | <a href="{% url posts.views.delete post_id=post.pk %}">Delete</a>
+                            | <a href="{% url "posts.views.edit" post_id=post.pk %}">Edit</a>
+                            | <a href="{% url "posts.views.delete" post_id=post.pk %}">Delete</a>
                             {% endif %}
                         </div>
                     </div>
                     {% endfor %}
                     {% if user.is_staff or perms.posts.add_post %}
-                    <a href="{% url posts.views.new %}">New Post</a>
+                    <a href="{% url "posts.views.new" %}">New Post</a>
                     {% endif %}
 {% endblock %}

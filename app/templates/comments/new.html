@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
                     <h1>{% block title %}New Comment{% endblock %}</h1>
-                    <form action="{% url comments.views.new post_id=post.pk %}" method="post" class="form-horizontal">
+                    <form action="{% url "comments.views.new" post_id=post.pk %}" method="post" class="form-horizontal">
                     {% include 'comments/form.html' %}
                         <div class="control-group">
                             <div class="controls">

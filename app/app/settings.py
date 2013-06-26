@@ -1,5 +1,4 @@
 import os, sys
-from jinja2.loaders import PrefixLoader, FileSystemLoader
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 ROOT_PATH = os.path.dirname(PROJECT_PATH)
@@ -27,12 +26,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(ROOT_PATH, 'static')
+STATIC_ROOT = os.path.join(ROOT_PATH, 'static/')
 
-STATIC_URL = os.path.join(ROOT_URL, 'static')
+STATIC_URL = os.path.join(ROOT_URL, 'static/')
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH, 'static'),
+    os.path.join(PROJECT_PATH, 'static/'),
 )
 
 STATICFILES_FINDERS = (

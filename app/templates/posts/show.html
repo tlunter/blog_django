@@ -6,8 +6,8 @@
                 </ul>
                 {{ post.body }}
                 {% if user.is_staff or user == post.created_by %}
-                <a href="{% url posts.views.edit post_id=post.pk %}">Edit</a> |
-                <a href="{% url posts.views.delete post_id=post.pk %}">Delete</a><br><br>
+                <a href="{% url "posts.views.edit" post_id=post.pk %}">Edit</a> |
+                <a href="{% url "posts.views.delete" post_id=post.pk %}">Delete</a><br><br>
                 {% endif %}
                 {% if post.comments.count > 0%}
                 Comments:<br>
@@ -18,7 +18,7 @@
                 {% endif %}
                 <div class="clear-fix">
                     <b>Add Comment</b>
-                    <form action="{% url comments.views.new post_id=post.pk %}" method="post" class="form-horizontal">
+                    <form action="{% url "comments.views.new" post_id=post.pk %}" method="post" class="form-horizontal">
                     {% include 'comments/form_inline.html' %}
                         <div class="control-group">
                             <input type="submit" value="Submit Comment"></p>
